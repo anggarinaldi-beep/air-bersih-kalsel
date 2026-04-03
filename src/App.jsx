@@ -579,53 +579,43 @@ function TabProfil() {
 function TabTentang() {
   return (
     <div>
-      <SectionHeader title="Tentang Dashboard" desc="Panduan membaca data dan cara memperbarui informasi." />
+      <SectionHeader
+        title="Tentang Dashboard"
+        desc="Informasi sumber data dan panduan membaca angka-angka dalam dashboard ini."
+      />
 
       <FindingBox type="info">
         <strong>Sumber data:</strong> Seluruh data bersumber dari publikasi resmi <em>Statistik Air Bersih Provinsi Kalimantan Selatan Tahun {META.tahun_data}</em> (Katalog BPS: {META.katalog}, Nomor Publikasi: {META.nomor_publikasi}), diterbitkan oleh {META.sumber}, {META.terbit}.
       </FindingBox>
 
       <FindingBox type="note">
-        <strong>Konvensi BPS N-1:</strong> Buku yang terbit tahun 2025 berisi data tahun 2024. Label tahun pada dashboard mengacu pada <em>tahun data</em>, bukan tahun publikasi.
+        <strong>Cakupan survei:</strong> Data dikumpulkan melalui Survei Tahunan Perusahaan Air Minum yang mencakup 12 PDAM di 13 kabupaten/kota Kalimantan Selatan. Kabupaten Banjar dan Kota Banjarbaru dilayani oleh satu PDAM yang sama. Pencacahan dilakukan secara lengkap (sensus), bukan sampel.
       </FindingBox>
 
       <div style={{ margin: '1.25rem 0' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: '.75rem' }}>Cara membaca angka</h3>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: '.75rem' }}>Panduan membaca angka</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13 }}>
           {[
-            ['Volume air', 'm³ (meter kubik) atau juta m³. 1 juta m³ ≈ 400 kolam renang olimpik.'],
-            ['Kapasitas produksi', 'Liter per detik (l/detik). Potensial = kapasitas terpasang. Efektif = yang benar-benar dipakai.'],
-            ['Nilai keuangan', 'Miliar rupiah (M). Nilai tambah negatif = PDAM merugi tahun tersebut.'],
-            ['Kebocoran', 'Air yang hilang dalam jaringan distribusi sebelum sampai ke meter pelanggan.'],
+            ['Volume air', 'm³ (meter kubik) atau juta m³. Sebagai perbandingan: 1 juta m³ setara dengan sekitar 400 kolam renang ukuran olimpik.'],
+            ['Kapasitas produksi', 'Diukur dalam liter per detik (l/detik). Kapasitas potensial adalah kemampuan terpasang maksimal. Kapasitas efektif adalah yang benar-benar digunakan.'],
+            ['Nilai keuangan', 'Dinyatakan dalam miliar rupiah (M). Nilai tambah negatif berarti PDAM tersebut merugi — biaya operasional melebihi pendapatan — pada tahun yang bersangkutan.'],
+            ['Kebocoran (NRW)', 'Air yang hilang dalam jaringan pipa distribusi sebelum tercatat di meter pelanggan. Dapat disebabkan kebocoran fisik pipa maupun kesalahan pencatatan meter.'],
+            ['Konvensi tahun BPS', 'Publikasi BPS terbit setahun setelah data dikumpulkan. Buku terbitan 2025 berisi data tahun 2024. Dashboard ini selalu mengacu pada tahun data, bukan tahun publikasi.'],
           ].map(([term, def], i) => (
-            <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 12px', background: 'var(--c-bg-2)', borderRadius: 'var(--radius-md)' }}>
-              <strong style={{ minWidth: 140, color: C.navy, fontWeight: 500 }}>{term}</strong>
-              <span style={{ color: 'var(--c-text-2)' }}>{def}</span>
+            <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 14px', background: 'var(--c-bg-2)', borderRadius: 'var(--radius-md)', alignItems: 'flex-start' }}>
+              <strong style={{ minWidth: 155, color: C.navy, fontWeight: 500, flexShrink: 0, paddingTop: 1 }}>{term}</strong>
+              <span style={{ color: 'var(--c-text-2)', lineHeight: 1.6 }}>{def}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div style={{ margin: '1.25rem 0' }}>
-        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 16, marginBottom: '.75rem' }}>Cara memperbarui data</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13 }}>
-          {[
-            ['Langkah 1', 'Unduh PDF BPS terbaru dari kalsel.bps.go.id'],
-            ['Langkah 2', 'Buka Google Sheets template, tambah baris data tahun baru di setiap sheet'],
-            ['Langkah 3', 'Jalankan: python scripts/sync_data.py — file src/data.js diperbarui otomatis'],
-            ['Langkah 4', 'git commit -am "update data [tahun]" && git push — Vercel deploy otomatis'],
-          ].map(([step, action], i) => (
-            <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 12px', background: 'var(--c-bg-2)', borderRadius: 'var(--radius-md)' }}>
-              <strong style={{ minWidth: 80, color: C.blue, fontWeight: 500 }}>{step}</strong>
-              <span style={{ color: 'var(--c-text-2)', fontFamily: action.startsWith('python') || action.startsWith('git') ? 'monospace' : 'inherit', fontSize: action.startsWith('python') || action.startsWith('git') ? 12 : 13 }}>{action}</span>
-            </div>
-          ))}
+      <div style={{ padding: '1rem 1.2rem', background: 'var(--c-bg-3)', borderRadius: 'var(--radius-lg)', fontSize: 12, color: 'var(--c-text-2)', marginTop: '1.25rem', lineHeight: 1.7 }}>
+        <div style={{ fontWeight: 500, color: 'var(--c-text)', marginBottom: 4, fontSize: 13 }}>data.mentaos.id</div>
+        Platform jurnalisme data independen yang merangkum statistik resmi Kalimantan Selatan dalam format yang mudah dipahami. Data diperbarui setiap kali BPS menerbitkan edisi terbaru.
+        <div style={{ marginTop: 8 }}>
+          Sumber resmi: <a href={META.url_sumber} target="_blank" rel="noopener noreferrer" style={{ color: C.blue }}>{META.url_sumber}</a>
         </div>
-      </div>
-
-      <div style={{ padding: '1rem', background: 'var(--c-bg-3)', borderRadius: 'var(--radius-lg)', fontSize: 12, color: 'var(--c-text-2)', marginTop: '1rem' }}>
-        Dashboard ini dikembangkan untuk <strong>data.mentaos.id</strong> — platform data jurnalisme Kalimantan Selatan.<br />
-        Data: <a href={META.url_sumber} target="_blank" rel="noopener noreferrer" style={{ color: C.blue }}>{META.url_sumber}</a>
       </div>
     </div>
   )
