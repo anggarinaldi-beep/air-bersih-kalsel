@@ -668,11 +668,11 @@ export default function App() {
           {/* Stat cards ringkasan */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 10 }}>
             {[
-              { icon: Droplets,      label: 'Total produksi', val: '158,6', unit: 'juta m³',  note: 'Bjm terbesar: 59,7 jt m³',  color: 'blue'  },
-              { icon: Users,         label: 'Total pelanggan', val: '3,26', unit: 'juta',      note: '89% rumah tangga',           color: 'teal'  },
-              { icon: AlertTriangle, label: 'Tingkat bocor',   val: pctBocor+'%', unit: '',   note: '35 juta m³ hilang/tahun',    color: 'red'   },
-              { icon: TrendingUp,    label: 'Nilai output',    val: '924,6', unit: 'miliar Rp',note: 'Nilai tambah: 268 M',        color: 'green' },
-              { icon: Gauge,         label: 'Kapasitas efektif',val:'13.470',unit: 'l/detik', note: '88% dari kapasitas potensial',color: 'amber' },
+              { icon: Droplets,      label: 'Total produksi',   value: '158,6',       unit: 'juta m³',   note: 'Bjm terbesar: 59,7 jt m³',   color: 'blue'  },
+              { icon: Users,         label: 'Total pelanggan',  value: '3,26',        unit: 'juta',      note: '89% rumah tangga',            color: 'teal'  },
+              { icon: AlertTriangle, label: 'Tingkat bocor',    value: pctBocor+'%',  unit: '',          note: '35 juta m³ hilang/tahun',     color: 'red'   },
+              { icon: TrendingUp,    label: 'Nilai output',     value: '924,6',       unit: 'miliar Rp', note: 'Nilai tambah: 268 M',         color: 'green' },
+              { icon: Gauge,         label: 'Kapasitas efektif',value: '13.470',      unit: 'l/detik',   note: '88% dari kapasitas potensial',color: 'amber' },
             ].map((s, i) => (
               <StatCard key={i} {...s} />
             ))}
